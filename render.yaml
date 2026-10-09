@@ -1,0 +1,32 @@
+services:
+  - type: worker
+    name: bale-ai-bot
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    disk:
+      name: bale-ai-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: BALE_BOT_TOKEN
+        sync: false
+      - key: GAPGPT_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: ADMIN_ID
+        value: "955311935"
+      - key: GAPGPT_BASE_URL
+        value: https://api.gapgpt.app/v1
+      - key: GAPGPT_MODEL
+        sync: false
+      - key: OPENROUTER_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: OPENROUTER_MODEL
+        sync: false
+      - key: SQLITE_PATH
+        value: /var/data/bot.sqlite3
+      - key: LOG_LEVEL
+        value: INFO
